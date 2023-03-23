@@ -55,18 +55,22 @@ images.forEach((item, index) => {
     </div>`
 });
 
-// GESTIONE CLICK SU THUMB
-const thumb = document.getElementsByClassName("thumb")
-console.log(thumb[0].innerHTML);
-thumb[activeItemIndex].addEventListener("click", function() {
-    console.log(this);
-    if (!itemImages[activeItemIndex].classList.contains("active")) {
-        itemImages[activeItemIndex].classList.remove("active");
-        
-    } else {
-        itemImages[this]
-    }
-})
+// Aggiungi un event listener su ciascun elemento thumbnail
+const thumbImages = document.querySelectorAll(".thumb img");
+thumbImages.forEach((thumbImage, index) => {
+    thumbImage.addEventListener("click", function() {
+        // Verifica se l'immagine cliccata non corrisponde all'immagine attiva
+        if (index !== activeItemIndex) {
+            // Rimuovi la classe "active" dall'immagine e descrizione attive
+            itemImages[activeItemIndex].classList.remove("active");
+            itemDescription[activeItemIndex].classList.remove("active");
+            
+            // Assegna la nuova immagine e descrizione attive
+            activeItemIndex = index;
+            itemImages[activeItemIndex].classList.add("active");
+        }
+    });
+});
 
 // GESTIONE TASTI
 const prevBtn = document.querySelector(".prev");
@@ -99,23 +103,25 @@ nextBtn.addEventListener("click", function() {
 // Prev button
 prevBtn.addEventListener("click", function() {
     // riporto itemDescription all situazione iniziale
-    if (itemDescription[activeItemIndex].classList.contains("active") && activeItemIndex === 0) { 
+    if (activeItemIndex === 0 && itemDescription[activeItemIndex].classList.contains("active")) {
+        itemDescription[activeItemIndex].classList.remove("active");
+    } else if (activeItemIndex === 0) { 
         itemImages[activeItemIndex].classList.remove("active");
-        itemDescription[activeItemIndex].classList.remove("active")
+        itemDescription[activeItemIndex].classList.remove("active");
         activeItemIndex = (itemImages.length - 1);
         itemImages[activeItemIndex].classList.add("active");
+        itemDescription[activeItemIndex].classList.add("active");
     } else if (itemDescription[activeItemIndex].classList.contains("active")) {
-        itemDescription[activeItemIndex].classList.remove("active")
+        itemDescription[activeItemIndex].classList.remove("active");
+    } else {
         // rimuovo lo stato active dalla array-item
         itemImages[activeItemIndex].classList.remove("active");
-        
+            
         // incremento la posizione dell'array
         activeItemIndex--;
-        
+
         // rimetto lo stato active dalla array-item
         itemImages[activeItemIndex].classList.add("active");
-    } else {
         itemDescription[activeItemIndex].classList.add("active");
-        
     }
 });
