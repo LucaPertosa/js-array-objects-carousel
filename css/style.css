@@ -1,0 +1,73 @@
+/* RESET */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+/* Layout */
+.container {
+    width: 70%;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel {
+    width: 80%;
+    height: 80%;
+    border: 1px solid orange;
+}
+.item {
+    display: none;
+    height: 100%;
+}
+.item.active {
+    display: block;
+}
+.hidden {
+    display: hidden;
+}
+.thumbnail {
+    width: 20%;
+    height: 80%;
+    border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+.thumb{
+    width: 100%;
+    height: calc(100% / 5);
+    border: 1px solid black;
+}
+
+/* BUTTONS */
+.prev,
+.next {
+    position: absolute;
+    transform: translateX(-50%);
+    background-color: rgba(244, 244, 244, 0.4);
+    width: 30px;
+    height: 30px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.prev {
+    top: 20px;
+}
+
+.next {
+    bottom: 20px;
+}
+/* /BUTTONS */
