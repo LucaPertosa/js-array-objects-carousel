@@ -4,6 +4,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 img {
     width: 100%;
     height: 100%;
@@ -27,8 +30,21 @@ img {
 .item {
     display: none;
     height: 100%;
+    position: relative;
 }
 .item.active {
+    display: block;
+}
+.img-description {
+    position: absolute;
+    display: none;
+    bottom: 0;
+    right: 0;
+    color: white;
+    padding: 15px;
+    text-align: right;
+}
+.img-description.active {
     display: block;
 }
 .hidden {
